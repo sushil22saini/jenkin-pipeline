@@ -18,6 +18,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         echo 'Build Docker Image And Push to Jfrog'
+        input(message: 'Do you want to continue deployment to SIT?', id: 'deploysit', ok: 'Continue', submitter: 'Sushil Kumar', submitterParameter: 'Sushil')
       }
     }
     stage('Deploy to SIT') {

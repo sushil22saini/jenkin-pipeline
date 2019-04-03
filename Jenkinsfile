@@ -37,6 +37,15 @@ pipeline {
       }
       steps {
         input(message: 'Do you want to continue deployment to SIT?', ok: 'Continue')
+        echo "current build number: ${currentBuild.number}"
+        echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
+        echo "Display name: ${currentBuild.displayName}"
+        echo "Project name: ${currentBuild.projectName}"
+        echo "Full Project name: ${currentBuild.fullProjectName}"
+        echo "Build Variables: ${currentBuild.buildVariables}"
+        echo "Upstream builds: ${currentBuild.upstreamBuilds}"
+
+        echo sh(returnStdout: true, script: 'env')     
         echo 'Build No:[${env.BUILD_NUMBER}] | Deploy to SIT'
       }
     }

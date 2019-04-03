@@ -9,15 +9,11 @@ pipeline {
           steps {
             echo "current build number: ${currentBuild.number}"
             echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
-            script{
-              echo "current build number: ${currentBuild.number}"
-              echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
-              def causes = currentBuild.rawBuild.getCauses()
-              echo "causes: ${causes}"
-              def rebuildCause0 = currentBuild.rawBuild.getCause(com.sonyericsson.rebuild.RebuildCause)
-              echo "rebuildCause0: ${rebuildCause0}"
-              echo "rebuild up number: ${rebuildCause0.getUpstreamBuild()}"
-            }
+            echo "Display name: ${currentBuild.displayName}"
+            echo "Project name: ${currentBuild.projectName}"
+            echo "Full Project name: ${currentBuild.fullProjectName}"
+            echo "Build Variables: ${currentBuild.buildVariables}"
+            echo "Upstream builds: ${currentBuild.upstreamBuilds}"
 
             echo sh(returnStdout: true, script: 'env')
             echo 'Build No:[${env.BUILD_NUMBER}] | Run Pylinting'
